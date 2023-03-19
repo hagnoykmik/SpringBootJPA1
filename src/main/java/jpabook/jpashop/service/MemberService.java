@@ -40,7 +40,7 @@ public class MemberService {
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByName(member.getName());  // member의 name을 unique 제약조건을 걸어주는것을 추천
         if (!findMembers.isEmpty()) {
-             throw new IllegalArgumentException("이미 존재하는 회원입니당.");
+             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
 

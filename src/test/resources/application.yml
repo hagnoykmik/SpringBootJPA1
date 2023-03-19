@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/jpashop
+    url: jdbc:h2:mem:test    # (외부 DB가 아닌) JVM안에서 메모리 모드로 동작 -> 스프링부트는 디폴트값이 메모리모드
     username: sa
     password:
     drive-class-name: org.h2.Driver
