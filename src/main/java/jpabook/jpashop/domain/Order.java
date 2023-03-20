@@ -90,7 +90,9 @@ public class Order {
      * 핵심 비즈니스 로직
      */
     //==생성 메서드==//
-    // 복잡한 생성 전용 -> 생성하는 관련 바꾸는건 이것만 바꾸면 된다.
+    // 생성할 때 무조건 createOrder를 호출해야한다.
+    // 주문 생성에대한 복잡한 비즈니스 로직을 완결
+    // -> 생성하는 관련 바꾸는건 이것만 바꾸면 된다.
     public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = new Order();
         order.setMember(member);
@@ -104,4 +106,35 @@ public class Order {
     }
     
     //==비즈니스 로직==//
+    /**
+     * 주문 취소
+     */
+    public void cancel() {
+        if (delivery.getStauts() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
+        }
+        // 배송시작 안했으면 주문 취소 (상태 변경)
+        this.setStatus(OrderStatus.CANCEL);
+        // 재고 관리
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
+
+    //==조회 로직==//
+    /**
+     * 전체 주문 가격 조회
+     */
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
+    }
+//    public int getTotalPrice() {
+//        return orderItems.stream()
+//            .mapToInt(OrderItem::getTotalPrice)
+//            .sum();
+//    }
 }
