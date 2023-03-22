@@ -15,7 +15,7 @@ import java.util.List;
 // 부모클래스에 잡아줘야한다. 우리는 싱글테이블 전략을 쓴다
 @DiscriminatorColumn(name = "dtype")
 // 구분해준다 book이면 이걸 할꺼야! -> book에 @DiscrimnatorValue
-@Getter
+@Getter @Setter
 public abstract class Item { //abstract 추상클래스로 생성 구현체를 가지고 할것이기 때문
 
     @Id @GeneratedValue

@@ -27,7 +27,7 @@ public class OrderRepository {
   /**
    * 상품 검색
    */
-//  public List<Order> findAll(OrderSearch orderSearch) {
+//  public List<Order> (OrderSearch orderSearch) {
 //
 //  }
 }
