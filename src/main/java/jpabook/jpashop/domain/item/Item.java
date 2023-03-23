@@ -51,4 +51,11 @@ public abstract class Item { //abstract 추상클래스로 생성 구현체를 �
         }
         this.stockQuantity = restStock;
     }
+
+    /**
+     * 변경 메서드
+     */
+//    public void change(int price, String name, int stockQuantity) {
+//
+//    }
 }
